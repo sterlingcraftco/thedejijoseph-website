@@ -1,0 +1,138 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import CallToAction from '@/components/CallToAction.astro';
+import Icon from '@/components/Icon.astro';
+import { getPosts, getPostBySlug } from '@/lib/ghost';
+import { format } from 'date-fns';
+
+// One static HTML page per published post, generated at build time.
+export async function getStaticPaths() {
+  const { posts } = await getPosts(1, 1000);
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getPostBySlug(slug!);
+
+const postDescription = (post.meta_description || post.custom_excerpt || post.excerpt || '').slice(0, 160);
+---
+
+<Layout
+  title={post.meta_title || post.title}
+  description={postDescription}
+  url={`/notes/${post.slug}`}
+  image={post.og_image || post.feature_image}
+  type="article"
+  publishedAt={post.published_at}
+  updatedAt={post.updated_at}
+  authorName={post.primary_author?.name}
+  tags={post.tags?.map((t) => t.name)}
+>
+  <Header />
+
+  <main class="pt-24">
+    <article>
+      <!-- Post Header -->
+      <header class="section-padding py-16 md:py-24 relative overflow-hidden">
+        <div class="absolute top-20 right-10 w-32 h-32 border-4 border-primary/20"></div>
+
+        <div class="max-w-3xl mx-auto relative z-10">
+          <a
+            href="/notes"
+            class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+          >
+            <Icon name="arrow-left" class="w-4 h-4" />
+            Back to Notes
+          </a>
+
+          <div class="space-y-6">
+            {post.primary_tag && (
+              <span class="inline-block px-3 py-1 text-xs font-medium bg-muted text-muted-foreground">
+                {post.primary_tag.name}
+              </span>
+            )}
+
+            <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight">
+              {post.title}
+            </h1>
+
+            {(post.custom_excerpt || post.excerpt) && (
+              <p class="body-large text-muted-foreground">
+                {post.custom_excerpt || post.excerpt}
+              </p>
+            )}
+
+            <div class="flex items-center gap-4 text-sm text-muted-foreground">
+              {post.primary_author && (
+                <span class="font-medium text-foreground">{post.primary_author.name}</span>
+              )}
+              <time datetime={post.published_at}>
+                {format(new Date(post.published_at), 'MMMM d, yyyy')}
+              </time>
+              {post.reading_time > 0 && (
+                <span class="flex items-center gap-1">
+                  <Icon name="clock" class="w-3.5 h-3.5" />
+                  {post.reading_time} min read
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Feature Image -->
+      {post.feature_image && (
+        <div class="section-padding pb-0">
+          <div class="max-w-4xl mx-auto">
+            <div class="aspect-[2/1] overflow-hidden relative">
+              <img
+                src={post.feature_image}
+                alt={post.feature_image_alt || post.title}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 left-4 w-full h-full border-4 border-primary -z-10"></div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <!-- Post Content -->
+      <div class="section-padding py-16 md:py-20">
+        <div
+          class="max-w-3xl mx-auto prose prose-lg prose-neutral
+            prose-headings:font-display prose-headings:tracking-tight
+            prose-p:mb-6 prose-p:leading-relaxed
+            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+            prose-img:my-8
+            prose-blockquote:border-primary prose-blockquote:border-l-4
+            prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-none prose-code:text-sm
+            prose-pre:bg-secondary prose-pre:text-secondary-foreground prose-pre:rounded-none"
+          set:html={post.html}
+        />
+      </div>
+
+      <!-- Tags -->
+      {post.tags && post.tags.length > 0 && (
+        <div class="section-padding pb-16">
+          <div class="max-w-3xl mx-auto">
+            <div class="border-t border-border pt-8">
+              <div class="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <span class="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground">
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </article>
+
+    <CallToAction />
+  </main>
+
+  <Footer />
+</Layout>

@@ -12,13 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Astro
+.astro/
+
 # Environment files
 .env
 .env.*
 !.env.example
-
-# Generated at build time
-public/sitemap.xml
 
 # Editor directories and files
 .vscode/*

@@ -1,0 +1,63 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section class="min-h-screen flex flex-col relative overflow-hidden">
+  <!-- Geometric background pattern -->
+  <div class="absolute inset-0 geometric-grid opacity-30"></div>
+
+  <!-- Accent shapes -->
+  <div class="absolute top-32 right-10 w-24 h-24 md:w-40 md:h-40 border-4 border-primary opacity-20"></div>
+  <div class="absolute bottom-20 left-10 w-16 h-16 md:w-24 md:h-24 bg-primary opacity-10"></div>
+
+  <div class="section-padding pt-32 pb-12 md:pt-44 md:pb-20 flex-1 relative z-10">
+    <div class="max-w-7xl mx-auto h-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Text on left -->
+        <div class="space-y-8">
+          <div class="accent-bar"></div>
+
+          <p class="text-sm font-medium tracking-widest uppercase text-muted-foreground">
+            Analyst • Engineer • Strategist
+          </p>
+
+          <h1 class="heading-hero relative z-20">
+            <span class="block whitespace-nowrap">Making</span>
+            <span class="block whitespace-nowrap">AI <span class="text-primary">Work</span></span>
+            <span class="block whitespace-nowrap">For you</span>
+          </h1>
+
+          <p class="text-xl md:text-2xl font-semibold text-foreground font-display tracking-tight">
+            LLMOps Engineer
+          </p>
+
+          <p class="body-large text-muted-foreground max-w-xl">
+            I want to work with founders, innovators and decision-makers to transform data into insights and products that create outsized value.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="mailto:hello@thedejijoseph.com?subject=Partnership" class="btn-primary">
+              Get in touch
+              <Icon name="arrow-right" class="w-4 h-4" />
+            </a>
+            <a href="/about" class="btn-outline">Learn more</a>
+          </div>
+        </div>
+
+        <!-- Geometric composition on right -->
+        <div class="hidden lg:block relative h-[500px]">
+          <div class="absolute top-8 right-0 w-64 h-64 border-4 border-primary opacity-30"></div>
+          <div class="absolute top-24 right-16 w-48 h-48 bg-primary opacity-10"></div>
+          <div class="absolute top-40 right-32 w-32 h-32 border-2 border-primary opacity-60"></div>
+          <div class="absolute top-16 right-72 w-24 h-[2px] bg-primary opacity-40"></div>
+          <div class="absolute top-20 right-80 w-16 h-[2px] bg-primary opacity-30"></div>
+          <div class="absolute top-24 right-72 w-20 h-[2px] bg-primary opacity-20"></div>
+          <div class="absolute top-48 right-8 w-[2px] h-32 bg-primary opacity-40"></div>
+          <div class="absolute top-56 right-12 w-[2px] h-24 bg-primary opacity-25"></div>
+          <div class="absolute bottom-16 right-24 w-20 h-20 border-2 border-primary opacity-40"></div>
+          <div class="absolute bottom-8 right-8 w-12 h-12 bg-primary opacity-20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

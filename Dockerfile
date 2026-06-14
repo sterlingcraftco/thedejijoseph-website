@@ -1,17 +1,13 @@
-# Build stage for frontend
+# Build stage for frontend (Astro static SSG)
 FROM node:20-alpine AS build-frontend
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-ARG VITE_SUPABASE_PROJECT_ID
-ARG VITE_SUPABASE_PUBLISHABLE_KEY
-ARG VITE_SUPABASE_URL
-ARG VITE_API_BASE_URL
-ENV VITE_SUPABASE_PROJECT_ID=$VITE_SUPABASE_PROJECT_ID
-ENV VITE_SUPABASE_PUBLISHABLE_KEY=$VITE_SUPABASE_PUBLISHABLE_KEY
-ENV VITE_SUPABASE_URL=$VITE_SUPABASE_URL
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+# NOTE: `astro build` fetches all posts from the Ghost Content API at build time
+# (getStaticPaths in src/pages/notes/[slug].astro). This stage therefore needs
+# network access to https://notes.thedejijoseph.com. If Ghost is unreachable the
+# build fails by design rather than shipping an empty blog.
 RUN npm run build
 
 # Build stage for backend (preparing node_modules)

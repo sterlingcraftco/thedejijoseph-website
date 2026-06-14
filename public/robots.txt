@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://thedejijoseph.com/sitemap.xml
+Sitemap: https://thedejijoseph.com/sitemap-index.xml

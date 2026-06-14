@@ -1,14 +1,23 @@
 :80 {
     root * /usr/share/caddy
-    file_server
+    encode gzip
 
     # Proxy API requests to the Hono backend
     handle /api/* {
         reverse_proxy localhost:3000
     }
 
-    # Fallback for SPA routing
+    # Static site (Astro multi-page output). Resolve a request like /about to
+    # dist/about/index.html. NOTE: this is NOT a SPA — do not fall back to the
+    # root /index.html, or every route renders the homepage.
     handle {
-        try_files {path} /index.html
+        try_files {path} {path}/index.html {path}.html
+        file_server
+    }
+
+    # Astro emits a standalone 404.html
+    handle_errors {
+        rewrite * /404.html
+        file_server
     }
 }

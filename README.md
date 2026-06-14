@@ -77,9 +77,9 @@ public/
   `react-helmet-async`, all `shadcn/ui` + Radix components, and the Supabase
   client. Astro's file routing, build-time data loading, and `<head>` handling
   replace them.
-- **Legacy / unused:** `supabase/functions/ghost-subscribe/` is an earlier
-  implementation of the subscribe endpoint. The live path is the Hono server
-  (`server/routes/ghost.ts`); the Supabase function is not deployed.
+- **Subscribe endpoint:** the live path is the Hono server
+  (`server/routes/ghost.ts`). An earlier Supabase edge-function implementation
+  was removed in favor of it.
 
 ## Local development
 
@@ -97,11 +97,14 @@ npm run start:backend
 
 Copy `.env.example` to `.env` and fill in values. `.env` is git-ignored.
 
-| Variable                | Used by | Purpose                                            |
-| ----------------------- | ------- | -------------------------------------------------- |
-| `GHOST_ADMIN_API_KEY`   | backend | `{id}:{secret}` Admin key for creating subscribers |
-| `VITE_API_BASE_URL`     | —       | legacy; the subscribe island defaults to `/api`    |
-| `VITE_SUPABASE_*`       | —       | legacy; unused after the Astro rebuild             |
+| Variable              | Used by | Purpose                                            |
+| --------------------- | ------- | -------------------------------------------------- |
+| `GHOST_ADMIN_API_KEY` | backend | `{id}:{secret}` Admin key for creating subscribers |
+
+`GHOST_ADMIN_API_KEY` is a **runtime** variable for the Hono backend, supplied
+to the container as an env var (Dokploy "Environment"). The Astro frontend build
+takes **no** env vars — the Ghost Content API URL + public key are hardcoded in
+`src/lib/ghost.ts` — so the Docker build stage needs no build args.
 
 ## Build
 

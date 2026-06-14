@@ -48,7 +48,7 @@ src/
   pages/
     index.astro              # Home
     about.astro              # About
-    projects.astro           # Placeholder portfolio; redirects to /about on prod
+    builds.astro             # Selected builds (full list; data in src/data/builds.ts)
     notes/index.astro        # Blog list (server-rendered cards + JS filter)
     notes/[slug].astro       # One static page per Ghost post (getStaticPaths)
     404.astro

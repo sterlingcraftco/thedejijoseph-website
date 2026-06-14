@@ -13,8 +13,7 @@ export default defineConfig({
   integrations: [
     react(),
     tailwind({ applyBaseStyles: false }), // base styles come from src/styles/global.css
-    // /projects redirects to /about on prod, so keep it out of the sitemap.
-    sitemap({ filter: (page) => !page.includes('/projects') }),
+    sitemap(),
   ],
   server: { port: 8080 },
 });

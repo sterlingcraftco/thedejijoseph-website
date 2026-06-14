@@ -1,0 +1,58 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { builds } from '@/data/builds';
+---
+
+<Layout
+  title="Builds"
+  description="Selected builds by Deji Joseph — payments infrastructure, core banking, healthcare portals, and the internal tools in between."
+  url="/builds"
+>
+  <Header />
+  <main class="pt-24">
+    <!-- Hero -->
+    <section class="section-padding py-20 md:py-32 relative overflow-hidden">
+      <div class="absolute top-20 right-10 w-32 h-32 border-4 border-primary/20"></div>
+      <div class="absolute bottom-10 left-20 w-16 h-16 bg-primary/10"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="max-w-3xl">
+          <div class="accent-bar mb-6"></div>
+          <h1 class="heading-hero mb-8">
+            <span class="text-primary">Builds</span>
+          </h1>
+          <p class="body-large text-muted-foreground">
+            Payments infrastructure, core banking, a healthcare insurance portal,
+            and the internal tools in between. Some built solo, some leading a team
+            — the through-line is systems that have to be correct.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- All builds -->
+    <section class="section-padding section-spacing bg-muted/30 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-40 h-40 border-4 border-primary/10 -translate-x-1/2 -translate-y-1/2"></div>
+
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {builds.map((build) => (
+            <div class="bg-background p-8 card-hover group border border-border/50 hover:border-primary/30 transition-all duration-500 space-y-5">
+              <div class="w-8 h-1 bg-primary group-hover:w-12 transition-all duration-300"></div>
+              <div class="space-y-2">
+                <h3 class="font-display text-xl font-bold group-hover:text-primary transition-colors">
+                  {build.title}
+                </h3>
+                <p class="text-sm text-primary font-medium">{build.subtitle}</p>
+              </div>
+              <p class="body-regular text-muted-foreground">{build.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

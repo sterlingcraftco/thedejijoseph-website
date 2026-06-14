@@ -2,59 +2,22 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import Icon from '@/components/Icon.astro';
-
-const workExperience = [
-  {
-    title: 'Research Lead',
-    company: 'Cardinal Healthcare Foundation',
-    location: 'Lagos, Nigeria',
-    period: '2022 —— Present',
-    description:
-      'Leading research and technical teams, building data pipelines and infrastructure to analyze health outcomes across underserved communities in Africa',
-  },
-  {
-    title: 'Consultant, Business Analysis',
-    company: 'Max-Migold Facilities Management',
-    location: 'Lagos, Nigeria',
-    period: '2024',
-    description:
-      'Developed data-driven strategies and automated reporting systems to improve institutional decision-making and engagement metrics',
-  },
-  {
-    title: 'Product Manager',
-    company: 'myStash Inc.',
-    location: 'Lagos, NG; Delaware, US',
-    period: '2022 —— 2024',
-    description:
-      'Led product development with focus on building scalable analytics infrastructure, dashboards, and automated screening pipelines across three markets',
-  },
-];
-
-const techStack = [
-  { category: 'Languages', tools: 'Python, Go, SQL' },
-  { category: 'Infrastructure', tools: 'Kubernetes, Docker, Terraform' },
-  { category: 'ML/AI Tools', tools: 'MLflow, DVC, LangChain' },
-  { category: 'Cloud', tools: 'AWS, GCP, Azure' },
-  { category: 'Data', tools: 'Feature Stores, Vector DBs, Airflow' },
-];
 ---
 
 <Layout
   title="About"
-  description="Deji Joseph — LLMOps Engineer building the automated factories that train, deploy, and monitor AI models at scale."
+  description="I'm Deji. Engineer, builder, occasional product thinker. My career hasn't followed a lane — it's followed curiosity."
   url="/about"
 >
   <Header />
   <main class="pt-32 md:pt-40">
-    <!-- Hero Section -->
     <section class="section-padding section-spacing relative overflow-hidden">
       <div class="absolute top-40 right-10 w-32 h-32 border-4 border-primary/20"></div>
       <div class="absolute bottom-20 left-10 w-20 h-20 bg-primary/10"></div>
 
       <div class="max-w-7xl mx-auto relative">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
-          <!-- Image on left -->
+          <!-- Image on left (grayscale -> color on hover) -->
           <div class="relative">
             <div class="aspect-[4/5] overflow-hidden relative group">
               <img
@@ -67,123 +30,37 @@ const techStack = [
           </div>
 
           <!-- Text on right -->
-          <div class="space-y-8 lg:pl-8">
+          <div class="space-y-6 lg:pl-8">
             <div class="accent-bar"></div>
-            <h1 class="heading-hero">
-              Hi <span class="text-primary">there!</span>
-            </h1>
 
             <p class="body-large">
-              I'm <span class="font-bold text-primary">Deji</span>, an LLMOps Engineer building the
-              automated factories that train, deploy, and monitor AI models at scale. I bridge the
-              gap between data science and production infrastructure.
+              I'm <span class="font-bold text-primary">Deji</span>. Engineer,
+              builder, occasional product thinker.
             </p>
 
             <p class="body-regular text-muted-foreground">
-              When I'm not managing GPU clusters or automating ML pipelines, you'll find me exploring
-              new destinations, getting lost in a new song, or rewatching episodes of my all-time
-              fave anime.
+              My career hasn't followed a lane — it's followed curiosity. I started
+              coordinating container logistics operations, built the tools to track
+              them, then moved into product and technical roles in fintech,
+              healthcare, and crypto. I've led teams and worked alone. I've written
+              infrastructure and written product specs. I've been the person who
+              builds the thing and the person who figures out what the thing should
+              be.
             </p>
 
             <p class="body-regular text-muted-foreground">
-              Each of these experiences fuels my creativity and curiosity, both in my work and life.
-              Let's connect and build something remarkable!
+              Right now I'm going deep on data and AI — not because I've found my
+              final destination, but because it's where the most interesting
+              problems are at this moment. Before this it was crypto payments
+              infrastructure. Before that, operations systems. There will be a next
+              thing.
             </p>
 
-            <div class="pt-4">
-              <a href="mailto:hello@thedejijoseph.com?subject=Partnership" class="btn-primary">
-                <Icon name="mail" class="w-4 h-4" />
-                Get in touch
-                <Icon name="arrow-right" class="w-4 h-4" />
-              </a>
-            </div>
+            <p class="body-regular text-muted-foreground">
+              What stays constant: I show up, I go deep, and I build things that
+              work.
+            </p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Recent Work & Projects Section -->
-    <section class="section-padding section-spacing bg-muted/30 relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-40 h-40 border-4 border-primary/10 -translate-x-1/2 -translate-y-1/2"></div>
-
-      <div class="max-w-7xl mx-auto relative">
-        <div class="mb-16 md:mb-20">
-          <div class="accent-bar mb-6"></div>
-          <h2 class="heading-section">
-            Recent Work <span class="text-primary">&</span> Projects
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-          {workExperience.map((job) => (
-            <div class="space-y-5 card-hover group">
-              <div class="w-8 h-1 bg-primary group-hover:w-12 transition-all duration-300"></div>
-              <div class="space-y-2">
-                <h3 class="font-display text-xl font-bold group-hover:text-primary transition-colors">
-                  {job.title}
-                </h3>
-                <p class="text-sm text-muted-foreground font-medium">{job.company}</p>
-                <p class="text-sm text-muted-foreground">{job.location}</p>
-                <p class="text-sm text-primary font-medium">{job.period}</p>
-              </div>
-              <p class="body-regular text-muted-foreground">{job.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Tech Stack Section -->
-    <section class="section-padding section-spacing relative overflow-hidden">
-      <div class="absolute top-20 right-20 w-24 h-24 border-4 border-primary/10"></div>
-
-      <div class="max-w-7xl mx-auto relative">
-        <div class="mb-16 md:mb-20">
-          <div class="accent-bar mb-6"></div>
-          <h2 class="heading-section">
-            Tech <span class="text-primary">Stack</span>
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {techStack.map((item) => (
-            <div class="space-y-3 group">
-              <h3 class="font-display text-sm font-bold uppercase tracking-wider text-primary">
-                {item.category}
-              </h3>
-              <p class="body-regular text-muted-foreground group-hover:text-foreground transition-colors">
-                {item.tools}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section-padding section-spacing bg-secondary text-secondary-foreground relative overflow-hidden">
-      <div class="absolute top-10 left-10 w-20 h-20 border-2 border-primary/30"></div>
-      <div class="absolute bottom-10 right-10 w-12 h-12 bg-primary/20"></div>
-
-      <div class="max-w-7xl mx-auto relative">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
-          <div class="space-y-6">
-            <div class="w-16 h-1 bg-primary"></div>
-            <h2 class="heading-section">
-              wanna work
-              <br />
-              <span class="text-primary">with me?</span>
-            </h2>
-          </div>
-
-          <a
-            href="mailto:hello@thedejijoseph.com?subject=Partnership"
-            class="btn-primary bg-primary text-primary-foreground hover:bg-primary/90"
-          >
-            <Icon name="mail" class="w-4 h-4" />
-            Get in touch
-            <Icon name="arrow-right" class="w-4 h-4" />
-          </a>
         </div>
       </div>
     </section>

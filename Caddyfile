@@ -2,6 +2,26 @@
     root * /usr/share/caddy
     encode gzip
 
+    # --- Decommissioned subdomain: ollama.thedejijoseph.com ---------------
+    # Old experiment whose DNS pointed at a host that was never ours; that host
+    # began serving foreign content under our name. We reclaim the namespace
+    # and return a hard "gone, do not index" signal so search engines drop
+    # every ollama.thedejijoseph.com/* URL. (Requires the subdomain to route to
+    # this app in Dokploy — see README "Decommissioned subdomains".)
+    @ollama host ollama.thedejijoseph.com
+    handle @ollama {
+        header X-Robots-Tag "noindex, nofollow"
+
+        # Disallow-all robots.txt for crawlers that ask for it.
+        @robots path /robots.txt
+        respond @robots `User-agent: *
+Disallow: /
+` 200
+
+        # Everything else: 410 Gone (stronger de-index signal than 404).
+        respond "410 Gone — this subdomain has been decommissioned." 410
+    }
+
     # Proxy API requests to the Hono backend
     handle /api/* {
         reverse_proxy localhost:3000

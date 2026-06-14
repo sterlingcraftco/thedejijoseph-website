@@ -141,3 +141,23 @@ There are two deploy paths in this repo — reconcile to one if that's confusing
 
 The canonical origin for sitemap/OG/canonical URLs is set via `site` in
 `astro.config.mjs` (`https://thedejijoseph.com`).
+
+### Decommissioned subdomains
+
+`ollama.thedejijoseph.com` was an old experiment whose DNS pointed at a host that
+was never ours; that host began serving foreign content under our name and got
+crawled by search engines. The `Caddyfile` has a host-matched block that returns
+`410 Gone` + `X-Robots-Tag: noindex, nofollow` for that subdomain, plus a
+disallow-all `robots.txt`, so search engines permanently drop every
+`ollama.thedejijoseph.com/*` URL.
+
+For this to take effect, the subdomain must route to **this** app:
+
+1. **DNS:** repoint `ollama.thedejijoseph.com` away from the old host to this
+   server / Dokploy ingress.
+2. **Dokploy:** add `ollama.thedejijoseph.com` as a domain on this app so its
+   proxy forwards the subdomain to this Caddy container.
+3. **Search Console:** add a DNS-verified **Domain property** for
+   `thedejijoseph.com` (covers all subdomains), then use **Removals → Remove all
+   URLs with this prefix** for `https://ollama.thedejijoseph.com/` to hide them
+   immediately while the `410`s de-index them permanently.

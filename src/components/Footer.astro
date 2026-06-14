@@ -6,9 +6,9 @@ const socialLinks = [
 ];
 
 const navLinks = [
-  { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
-  { name: "Deji's Notes", path: '/notes' },
+  { name: 'Builds', path: '/builds' },
+  { name: 'Notes', path: '/notes' },
 ];
 ---
 
@@ -22,7 +22,13 @@ const navLinks = [
       <div class="space-y-6">
         <a href="/" class="flex items-center gap-3">
           <img src="/assets/logo.png" alt="Deji Joseph" class="h-10 w-auto" />
+          <span class="font-display font-bold text-lg tracking-tight">
+            The Deji Joseph
+          </span>
         </a>
+        <p class="body-regular text-muted-foreground max-w-xs">
+          Engineer. The rest is context.
+        </p>
       </div>
 
       <!-- Navigation -->

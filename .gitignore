@@ -17,6 +17,9 @@ dist-ssr
 .env.*
 !.env.example
 
+# Generated at build time
+public/sitemap.xml
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

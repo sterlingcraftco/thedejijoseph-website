@@ -1,5 +1,5 @@
 # Build stage for frontend (Astro static SSG)
-FROM node:20-alpine AS build-frontend
+FROM node:22-alpine AS build-frontend
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -11,7 +11,7 @@ COPY . .
 RUN npm run build
 
 # Build stage for backend (preparing node_modules)
-FROM node:20-alpine AS build-backend
+FROM node:22-alpine AS build-backend
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -19,7 +19,7 @@ COPY server/ ./server/
 COPY tsconfig.json ./
 
 # Final stage
-FROM node:20-alpine
+FROM node:22-alpine
 RUN apk add --no-cache caddy
 
 WORKDIR /app

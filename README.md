@@ -83,7 +83,7 @@ public/
 
 ## Local development
 
-Requires Node.js 20+.
+Requires Node.js 22.12+ (Astro 6).
 
 ```sh
 npm install

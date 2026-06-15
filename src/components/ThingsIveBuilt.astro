@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { builds } from '@/data/builds';
 
 const featured = builds.slice(0, 3);
@@ -35,7 +36,7 @@ const featured = builds.slice(0, 3);
       class="inline-flex items-center gap-2 text-primary font-medium hover:underline mt-12"
     >
       See all builds
-      <span aria-hidden="true">→</span>
+      <Icon name="arrow-right" class="w-4 h-4" />
     </a>
   </div>
 </section>

@@ -11,11 +11,10 @@
     "start:backend": "tsx server/index.ts"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/react": "^5.0.7",
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/tailwind": "^6.0.2",
     "@hono/node-server": "^1.13.7",
-    "astro": "^5.18.2",
+    "astro": "^6.4.6",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.7",
     "hono": "^4.6.14",

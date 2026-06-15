@@ -60,7 +60,7 @@ export default function SubscribeForm({ apiBase = '/api' }: Props) {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
           required
-          className="flex-1 px-4 py-3 bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors font-body text-sm"
+          className="flex-1 px-4 py-3 bg-muted border-2 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors font-body text-sm"
         />
         <button type="submit" disabled={loading} className="btn-primary disabled:opacity-50">
           {loading ? 'Subscribing...' : 'Subscribe'}

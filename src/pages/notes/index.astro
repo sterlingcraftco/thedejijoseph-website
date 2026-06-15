@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Icon from '@/components/Icon.astro';
-import SubscribeForm from '@/components/SubscribeForm.tsx';
+import NewsletterCta from '@/components/NewsletterCta.astro';
 import { getPosts, getTags } from '@/lib/ghost';
 import { format } from 'date-fns';
 
@@ -15,7 +15,7 @@ const [{ posts }, tags] = await Promise.all([getPosts(1, 1000), getTags()]);
 
 <Layout
   title="Notes"
-  description="Thoughts on AI infrastructure, LLMOps, and building production ML systems — by Deji Joseph."
+  description="Thoughts as I learn them — on engineering, the things I'm building, and wherever curiosity leads."
   url="/notes"
 >
   <Header />
@@ -30,10 +30,11 @@ const [{ posts }, tags] = await Promise.all([getPosts(1, 1000), getTags()]);
         <div class="max-w-3xl">
           <div class="accent-bar mb-6"></div>
           <h1 class="heading-hero mb-8">
-            My <span class="text-primary">Notes</span>
+            <span class="text-primary">Notes</span>
           </h1>
           <p class="body-large text-muted-foreground mb-10">
-            Thoughts on AI infrastructure, LLMOps, and building production ML systems.
+            Thoughts as I learn them — on engineering, the things I'm building, and
+            wherever curiosity leads.
           </p>
 
           <!-- Search -->
@@ -152,22 +153,7 @@ const [{ posts }, tags] = await Promise.all([getPosts(1, 1000), getTags()]);
       </div>
     </section>
 
-    <!-- Subscribe -->
-    <section class="section-padding section-spacing relative overflow-hidden">
-      <div class="absolute top-10 right-10 w-24 h-24 border-4 border-primary/10"></div>
-
-      <div class="max-w-3xl mx-auto text-center">
-        <div class="accent-bar mx-auto mb-8"></div>
-        <span class="inline-flex text-primary mb-6"><Icon name="mail" class="w-10 h-10" /></span>
-        <h2 class="heading-section mb-4">
-          Stay <span class="text-primary">Updated</span>
-        </h2>
-        <p class="body-large text-muted-foreground mb-10">
-          Subscribe to get new posts delivered straight to your inbox.
-        </p>
-        <SubscribeForm client:visible />
-      </div>
-    </section>
+    <NewsletterCta />
   </main>
 
   <Footer />

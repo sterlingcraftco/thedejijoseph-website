@@ -4,7 +4,7 @@ import { getPosts } from '@/lib/ghost';
 import { format } from 'date-fns';
 
 // Latest three posts, fetched at build time.
-const { posts } = await getPosts(1, 3);
+const { posts } = await getPosts(1, 3, { tag: 'website' });
 ---
 
 <section class="section-padding section-spacing relative overflow-hidden">

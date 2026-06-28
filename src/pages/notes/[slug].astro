@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 // One static HTML page per published post, generated at build time.
 export async function getStaticPaths() {
-  const { posts } = await getPosts(1, 1000);
+  const { posts } = await getPosts(1, 1000, { tag: 'website' });
   return posts.map((post) => ({ params: { slug: post.slug } }));
 }
 

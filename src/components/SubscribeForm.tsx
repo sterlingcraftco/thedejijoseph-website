@@ -58,7 +58,7 @@ export default function SubscribeForm({ apiBase = '/api' }: Props) {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="your@email.com"
+          placeholder="you@email.com"
           required
           className="flex-1 px-4 py-3 bg-muted border-2 border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors font-body text-sm"
         />

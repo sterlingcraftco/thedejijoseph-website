@@ -10,7 +10,7 @@ import { format } from 'date-fns';
 // Build-time fetch: every post + tag is rendered into static HTML so crawlers
 // (and users without JS) get the full, linked list. Search and tag filtering
 // are progressive enhancements over this server-rendered list.
-const [{ posts }, tags] = await Promise.all([getPosts(1, 1000), getTags()]);
+const [{ posts }, tags] = await Promise.all([getPosts(1, 1000, { tag: 'website' }), getTags()]);
 ---
 
 <Layout

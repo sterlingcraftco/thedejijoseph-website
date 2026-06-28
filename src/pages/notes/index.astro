@@ -4,13 +4,28 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Icon from '@/components/Icon.astro';
 import NewsletterCta from '@/components/NewsletterCta.astro';
-import { getPosts, getTags } from '@/lib/ghost';
+import { getPosts } from '@/lib/ghost';
 import { format } from 'date-fns';
 
 // Build-time fetch: every post + tag is rendered into static HTML so crawlers
 // (and users without JS) get the full, linked list. Search and tag filtering
 // are progressive enhancements over this server-rendered list.
-const [{ posts }, tags] = await Promise.all([getPosts(1, 1000, { tag: 'website' }), getTags()]);
+const { posts } = await getPosts(1, 1000, { tag: 'website' });
+const tags = Array.from(
+  posts.reduce((acc, post) => {
+    post.tags?.forEach((tag) => {
+      if (tag.slug !== 'website' && !tag.name.startsWith('#')) {
+        const existing = acc.get(tag.slug);
+        if (existing && existing.count) {
+          existing.count.posts++;
+        } else {
+          acc.set(tag.slug, { ...tag, count: { posts: 1 } });
+        }
+      }
+    });
+    return acc;
+  }, new Map<string, import('@/lib/ghost').GhostTag>()).values()
+).sort((a, b) => (b.count?.posts ?? 0) - (a.count?.posts ?? 0));
 ---
 
 <Layout

@@ -47,7 +47,7 @@ const postDescription = (post.meta_description || post.custom_excerpt || post.ex
           </a>
 
           <div class="space-y-6">
-            {post.primary_tag && (
+            {post.primary_tag && post.primary_tag.slug !== 'website' && (
               <span class="inline-block px-3 py-1 text-xs font-medium bg-muted text-muted-foreground">
                 {post.primary_tag.name}
               </span>
@@ -118,7 +118,7 @@ const postDescription = (post.meta_description || post.custom_excerpt || post.ex
           <div class="max-w-3xl mx-auto">
             <div class="border-t border-border pt-8">
               <div class="flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
+                {post.tags.filter((tag) => tag.slug !== 'website' && !tag.name.startsWith('#')).map((tag) => (
                   <span class="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground">
                     {tag.name}
                   </span>
